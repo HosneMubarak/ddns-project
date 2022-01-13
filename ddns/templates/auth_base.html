@@ -1,0 +1,36 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon">
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="{% static 'assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/fullcalendar/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/quill/dist/quill.snow.css' %}">
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <title>Dynamic DNS</title>
+
+</head>
+
+<body class="bg-light">
+
+{% block auth_content %}
+
+
+{% endblock %}
+
+<!-- clipboard -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+<!-- Theme JS -->
+<script src="{% static 'assets/js/theme.min.js' %}"></script>
+
+
+</body>
+
+</html>

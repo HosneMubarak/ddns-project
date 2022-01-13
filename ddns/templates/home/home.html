@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card ">
+            <h5 class="card-header">Quick Add</h5>
+            <div class="card-body border-top">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Hostname</label>
+                            <input type="text" name="hostname" class="form-control" placeholder="Hostname" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Top Level Domain Name</label>
+                            <select name="tld" class="form-control" required>
+                                <option selected>Choose...</option>
+                                {% for domain in all_top_level_domain %}
+                                    <option value="{{ domain.id }}">{{ domain.top_level_domain_name }}
+                                        {% if domain.premium %}
+                                            - Premium Domain
+                                        {% endif %}
+
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Domain</th>
+      <th scope="col">IPv4</th>
+      <th scope="col">IPv6</th>
+      <th scope="col">Last Update</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for ddns_service in all_ddns_service_list %}
+    <tr>
+      <td>{{ ddns_service.domain.hostname }}.{{ ddns_service.domain.top_level_domain_name.top_level_domain_name }}</td>
+      <td>{{ ddns_service.ipv4_address }} </td>
+      <td>{{ ddns_service.ipv6_address }} </td>
+      <td>{{ ddns_service.last_update }} </td>
+      <td>
+        <button type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-primary">Edit</button>
+      </td>
+    </tr>
+
+
+    {% endfor %}
+
+  </tbody>
+</table>
+
+
+</div>
+
+
+
+{% endblock %}

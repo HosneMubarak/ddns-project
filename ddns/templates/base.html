@@ -1,0 +1,194 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon">
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="{% static 'assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/fullcalendar/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/quill/dist/quill.snow.css' %}">
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <title>Dynamic DNS</title>
+
+
+</head>
+
+<body>
+<!-- ============================================================== -->
+<!-- main wrapper -->
+<!-- ============================================================== -->
+<div class="dashboard-main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Top header default -->
+    <!-- ============================================================== -->
+    <div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            {#            <a class="navbar-brand" href="/"><img src="{% static 'assets/images/logo.png' %}" alt=""></a>#}
+            <a class="navbar-brand" href="/"><img src="{% static 'homepage/assets/img/main_image.png' %}" width="40px"
+                                                  alt=""></a>
+            <div class="ml-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto navbar-right-top flex-row ">
+                    <li class="nav-item d-none d-lg-block">
+                        <div id="custom-search" class="top-search-bar">
+                            <input class="form-control" type="text" placeholder="Search..">
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown nav-user order-lg-4 ">
+                        <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"><i class="fa fa-2x fa-fw fa-user-circle"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                             aria-labelledby="navbarDropdownMenuLink2">
+                            <div class="nav-user-info">
+                                <h5 class="mb-0 text-white nav-user-name">{{ request.session.user_information.username }}</h5>
+                                <span class="status"></span><span>Available</span>
+                            </div>
+                            <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                            <a class="dropdown-item" href="{% url 'home:set_password' %}"><i
+                                    class="fas fa-cog mr-2"></i>Change Password</a>
+                            <a class="dropdown-item" href="{% url 'home:logout' %}"><i
+                                    class="fas fa-power-off mr-2"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Top header default -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- left sidebar -->
+    <!-- ============================================================== -->
+    <div class="nav-left-sidebar sidebar-dark" style="background-color: #2c3e50 !important;">
+        <div class="menu-list">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="d-xl-none d-lg-none text-white" href="#">Dashboard</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-column">
+                        <li class="nav-divider">
+                            Menu
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'home:home_page' %}" aria-expanded="false"
+                               data-target="#submenu-1"
+                               aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard</a>
+
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'home:services' %}" aria-expanded="false"
+                               data-target="#submenu-1"
+                               aria-controls="submenu-1"><i class="fa fa-fw fas fa-cogs"></i>Services</a>
+
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end left sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    {% block content %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        2022 © DDNS Services Ltd<a href="#"
+                                                   target="_blank" class="ml-1">Edson Lobo de Pina</a>.
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript: void(0);">About</a>
+                            <a href="javascript: void(0);">Support</a>
+                            <a href="javascript: void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- end main wrapper -->
+<!-- ============================================================== -->
+
+<script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/libs/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'assets/libs/jquery-sparkline/jquery.sparkline.min.js' %}"></script>
+<script src="{% static 'assets/libs/chartist/dist/chartist.min.js' %}"></script>
+<script src="{% static 'assets/libs/chartist-plugin-threshold/dist/chartist-plugin-threshold.min.js' %}"></script>
+<script src="{% static 'assets/libs/raphael/raphael.min.js' %}"></script>
+<script src="{% static 'assets/libs/morris.js/morris.min.js' %}"></script>
+<script src="{% static 'assets/libs/gaugeJS/dist/gauge.min.js' %}"></script>
+<script src="{% static 'assets/libs/chart.js/dist/Chart.bundle.min.js' %}"></script>
+<script src="{% static 'assets/libs/c3/c3.min.js' %}"></script>
+<script src="{% static 'assets/libs/d3/dist/d3.min.js' %}"></script>
+<script src="{% static 'assets/libs/inputmask/dist/jquery.inputmask.min.js' %}"></script>
+<script src="{% static 'assets/libs/parsleyjs/dist/parsley.min.js' %}"></script>
+<script src="{% static 'assets/libs/select2/dist/js/select2.min.js' %}"></script>
+<script src="{% static 'assets/libs/multiselect/js/jquery.multi-select.js' %}"></script>
+<script src="{% static 'assets/libs/fullcalendar/main.min.js' %}"></script>
+<script src="{% static 'assets/libs/cropperjs/dist/cropper.min.js' %}"></script>
+<script src="{% static 'assets/libs/sortablejs/Sortable.min.js' %}"></script>
+<script src="{% static 'assets/libs/jquery-nestable/jquery.nestable.js' %}"></script>
+<script src="{% static 'assets/libs/jquery-asColor/dist/jquery-asColor.min.js' %}"></script>
+<script src="{% static 'assets/libs/jquery-asGradient/dist/jquery-asGradient.min.js' %}"></script>
+<script src="{% static 'assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js' %}"></script>
+<script src="{% static 'assets/libs/@claviska/jquery-minicolors/jquery.minicolors.min.js' %}"></script>
+<script src="{% static 'assets/libs/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js' %}"></script>
+<script src="{% static 'assets/libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'assets/libs/datatables.net-rowgroup/js/dataTables.rowGroup.min.js' %}"></script>
+<script src="{% static 'assets/libs/datatables.net-select/js/dataTables.select.min.js' %}"></script>
+<script src="{% static 'assets/libs/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+<script src="{% static 'assets/libs/daterangepicker/moment.min.js' %}"></script>
+<script src="{% static 'assets/libs/daterangepicker/daterangepicker.js' %}"></script>
+<script src="{% static 'assets/libs/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+<script src="{% static 'assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js' %}"></script>
+<script src="{% static 'assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'assets/libs/jvectormap-next/jquery-jvectormap.min.js' %}"></script>
+<script src="{% static 'assets/libs/ika.jvectormap/jquery-jvectormap-us-aea-en.js' %}"></script>
+<script src="{% static 'assets/libs/cd-jvectormap/world-mill.js' %}"></script>
+<script src="{% static 'assets/libs/gmaps/gmaps.min.js' %}"></script>
+<script src="{% static 'assets/libs/quill/dist/quill.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+<!-- Theme JS -->
+<script src="{% static 'assets/js/theme.min.js' %}"></script>
+</body>
+
+</html>

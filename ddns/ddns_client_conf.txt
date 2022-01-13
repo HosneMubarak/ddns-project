@@ -1,0 +1,21 @@
+[
+    {
+        "token": "7d3ada630b60fb7fc4855969e4b0a08f69e5dd74"
+    },
+    {
+        "services": [
+            {
+                "ipv4_address": "127.0.0.1",
+                "full_domain": "server1.networkgeeks.com"
+            },
+            {
+                "ipv4_address": "null",
+                "full_domain": "null"
+            },
+            {
+                "ipv4_address": "null",
+                "full_domain": "null"
+            }
+        ]
+    },
+]
